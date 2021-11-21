@@ -14,7 +14,7 @@ filegroup(
 filegroup(
   name = 'all_files',
   srcs = [
-    '@arm-buildroot-linux-gnueabihf-sysroot//:sysroot',
+    '@arm-cortex_a8-linux-gnueabihf-sysroot//:sysroot',
     '@arm-cortex_a8-linux-gnueabihf//:toolchain',
     ':wrappers',
   ],

@@ -70,7 +70,7 @@ def _impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            "--sysroot=external/arm-buildroot-linux-gnueabihf-sysroot",
+                            "--sysroot=external/arm-cortex_a8-linux-gnueabihf-sysroot",
                             "-no-canonical-prefixes",
                             "-fno-canonical-system-headers",
                             "-Wno-builtin-macro-redefined",
@@ -93,7 +93,7 @@ def _impl(ctx):
                 flag_groups = ([
                     flag_group(
                         flags = [
-                            "--sysroot=external/arm-buildroot-linux-gnueabihf-sysroot",
+                            "--sysroot=external/arm-cortex_a8-linux-gnueabihf-sysroot",
                             "-lstdc++",
                         ],
                     ),

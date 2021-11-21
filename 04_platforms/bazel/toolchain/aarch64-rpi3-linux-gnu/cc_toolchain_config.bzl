@@ -70,7 +70,7 @@ def _impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            "--sysroot=external/aarch64-buildroot-linux-gnu-sysroot",
+                            "--sysroot=external/aarch64-rpi3-linux-gnu-sysroot",
                             "-no-canonical-prefixes",
                             "-fno-canonical-system-headers",
                             "-Wno-builtin-macro-redefined",
@@ -93,7 +93,7 @@ def _impl(ctx):
                 flag_groups = ([
                     flag_group(
                         flags = [
-                            "--sysroot=external/aarch64-buildroot-linux-gnu-sysroot",
+                            "--sysroot=external/aarch64-rpi3-linux-gnu-sysroot",
                             "-lstdc++",
                         ],
                     ),
