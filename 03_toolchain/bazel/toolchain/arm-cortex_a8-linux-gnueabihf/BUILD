@@ -27,6 +27,7 @@ cc_toolchain(
     toolchain_identifier = "armv7-toolchain",
     toolchain_config = ":armv7_toolchain_config",
     all_files = ":all_files",
+    ar_files = ":all_files",
     compiler_files = ":all_files",
     dwp_files = ":empty",
     linker_files = ":all_files",
