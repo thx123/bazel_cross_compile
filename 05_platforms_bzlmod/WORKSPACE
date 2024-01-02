@@ -1,3 +1,5 @@
+# Old WORKSPACE content from 04_platforms/WORKSPACE (migrated to MODULE.bazel)
+
 # load("//third_party:deps.bzl", "deps")
 # deps()
  

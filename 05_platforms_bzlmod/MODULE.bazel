@@ -1,3 +1,6 @@
+# Content migrated from the WORKSPACE file per [Bzlmod Migration Guide](https://bazel.build/external/migration?authuser=1),
+# which does not work.
+
 non_module_deps = use_extension("deps.bzl", "non_module_dependencies")
 # use_repo(non_module_deps, "aarch64_rpi3_linux_gnu")
 # use_repo(non_module_deps, "aarch64_rpi3_linux_gnu_sysroot")
