@@ -31,7 +31,7 @@ def setup_aarch64_toolchain():
     )
     
     native.cc_toolchain_suite(
-        name = "gcc_toolchain",
+        name = "aarch64_toolchain_suite",
         toolchains = {
             "aarch64": ":aarch64_toolchain",
         },

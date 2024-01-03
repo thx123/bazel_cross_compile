@@ -20,7 +20,7 @@ def setup_x86_64_aarch64_none_linux_gnu_cc_toolchain():
     )
     
     native.cc_toolchain_suite(
-        name = "gcc_toolchain",
+        name = "x86_64_aarch64_none_linux_gnu_cc_toolchain_suite",
         toolchains = {
             "aarch64": ":x86_64_aarch64_none_linux_gnu_cc_toolchain",
         },
