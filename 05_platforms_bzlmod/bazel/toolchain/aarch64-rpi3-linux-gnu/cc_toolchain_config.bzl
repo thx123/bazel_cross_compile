@@ -70,7 +70,8 @@ def _impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            "--sysroot=external/aarch64-rpi3-linux-gnu-sysroot",
+                            "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
+                            # "--sysroot=" + ctx.attr.toolchain_ref.label.workspace_root,
                             "-no-canonical-prefixes",
                             "-fno-canonical-system-headers",
                             "-Wno-builtin-macro-redefined",
@@ -93,7 +94,7 @@ def _impl(ctx):
                 flag_groups = ([
                     flag_group(
                         flags = [
-                            "--sysroot=external/aarch64-rpi3-linux-gnu-sysroot",
+                            "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
                             "-lstdc++",
                         ],
                     ),
@@ -123,6 +124,13 @@ def _impl(ctx):
 
 cc_toolchain_config = rule(
     implementation = _impl,
-    attrs = {},
+    attrs = {
+        # "toolchain_ref": attr.label(
+        #   default = Label("@aarch64-rpi3-linux-gnu:toolchain"),
+        #   allow_single_file = True,
+        #   # executable = True,
+        #   # cfg = "exec",
+        # ),
+    },
     provides = [CcToolchainConfigInfo],
 )

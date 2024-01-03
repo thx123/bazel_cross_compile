@@ -39,11 +39,43 @@ def arm_cortex_a8_linux_gnueabihf_sysroot():
             sha256 = "c716440776ec0e8823e226268ce490bf7e705c2c869e41b1bebcf26ff99fd19d",
         )
 
+# This is needed to build 3rd-party non-Bazel modules (e.g. external projects
+# that are based on CMake, Autotools, or other build systems).
+# Background: https://bazelbuild.github.io/rules_foreign_cc/main/cmake.html
+_ALL_CONTENT = """\
+filegroup(
+    name = "all_srcs",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+"""
+
+def zeromq():
+    """required by cppzmq below"""
+    if "zeromq" not in native.existing_rules():
+        http_archive(
+            name = "zeromq",
+            urls = ["https://github.com/zeromq/libzmq/releases/download/v4.3.5/zeromq-4.3.5.tar.gz"],
+            strip_prefix = "zeromq-4.3.5",
+            build_file_content = _ALL_CONTENT,
+        )
+
+def cppzmq():
+    if "cppzmq" not in native.existing_rules():
+        http_archive(
+            name = "cppzmq",
+            urls = ["https://github.com/zeromq/cppzmq/archive/refs/tags/v4.10.0.tar.gz"],
+            strip_prefix = "cppzmq-4.10.0",
+            build_file_content = _ALL_CONTENT,
+        )
+
 def _non_module_dependencies_impl(_ctx):
     aarch64_rpi3_linux_gnu()
     aarch64_rpi3_linux_gnu_sysroot()
     arm_cortex_a8_linux_gnueabihf()
     arm_cortex_a8_linux_gnueabihf_sysroot()
+    zeromq()
+    cppzmq()
 
 non_module_dependencies = module_extension(
     implementation = _non_module_dependencies_impl,
