@@ -1,0 +1,54 @@
+# Enable Bzlmod for every Bazel command
+# Note: Keep this flag here after it's enabled by default in v.7.0.0, as we
+# need to stay at v6.4.0 due to rules_foreign_cc breakage.
+common --enable_bzlmod
+
+# All options comming from this file will be announced on the terminal.
+common --announce_rc
+
+# Add timestamps to message.
+# common --show_timestamps
+
+# If a command fails, print out the full command line.
+build --verbose_failures
+build --subcommands
+
+# rules_foreign_cc's cmake targets may trouble accessing outputs of their deppendency
+# targets when building with the default sandbox strategy, so we fall back to the
+# 'standalone' (a.k.a. 'local') strategy for it in v7.0.0, or stay at v.6.4.0
+# and enable bzlmod.
+# build --spawn_strategy=standalone
+
+# For additional debugging messages and reproducing build failures in sandbox environments
+# Context: https://blog.bazel.build/2016/03/18/sandbox-easier-debug.html
+build --sandbox_debug
+
+# Additional debug info for toolchain reolution (warning: verbose and hard-to-read)
+# Debugging tips (with cquery, etc):
+# https://bazel.build/extending/toolchains?authuser=1#debugging-toolchains
+# build --toolchain_resolution_debug=<regex>
+# build --toolchain_resolution_debug=//<failing:target>
+# build --toolchain_resolution_debug=//examples_bazel/cpp_stm32
+
+# Build using platforms by default
+# Background: https://bazel.build/concepts/platforms#status
+# Note: No longer needed since v7.0.0 but kept here for now just to be safe.
+build --incompatible_enable_cc_toolchain_resolution
+
+# Use C++20 as C++17 would output annoying warnings like the following;
+# warning: nested namespace definition is a C++17 extension; define each namespace separately [-Wc++17-extensions]
+#   namespace amp::config {
+# Note: This is disabled as arm_none_eabi (for STM32) toolchain config doesn't play well with C++20.
+#       This can instead be optionally enabled for non-STM32 build targets.
+# build --cxxopt=-std=c++20
+build --cxxopt=-std=c++17
+
+build:rpi --crosstool_top=//bazel/toolchain/aarch64-rpi3-linux-gnu:gcc_toolchain --cpu=aarch64
+build:bbb --crosstool_top=//bazel/toolchain/arm-cortex_a8-linux-gnueabihf:gcc_toolchain --cpu=armv7
+
+build:rpi-platform --platforms=//bazel/platforms:rpi
+build:bbb-platform --platforms=//bazel/platforms:bbb
+
+build:ptest0 :hello
+build:ptest1 :hello --platforms=//bazel/platforms:rpi
+build:ptest2 //examples_bazel/cpp:hello-world --platforms=//cfg-bazel/platforms:kr260_a
