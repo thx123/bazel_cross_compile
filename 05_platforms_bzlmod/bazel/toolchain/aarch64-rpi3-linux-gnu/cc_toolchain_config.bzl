@@ -29,35 +29,35 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "ar",
-            path = "wrappers/aarch64-rpi3-linux-gnu-ar",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-ar",
         ),
         tool_path(
             name = "cpp",
-            path = "wrappers/aarch64-rpi3-linux-gnu-cpp",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-cpp",
         ),
         tool_path(
             name = "gcc",
-            path = "wrappers/aarch64-rpi3-linux-gnu-gcc",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-gcc",
         ),
         tool_path(
             name = "gcov",
-            path = "wrappers/aarch64-rpi3-linux-gnu-gcov",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-gcov",
         ),
         tool_path(
             name = "ld",
-            path = "wrappers/aarch64-rpi3-linux-gnu-ld",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-ld",
         ),
         tool_path(
             name = "nm",
-            path = "wrappers/aarch64-rpi3-linux-gnu-nm",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-nm",
         ),
         tool_path(
             name = "objdump",
-            path = "wrappers/aarch64-rpi3-linux-gnu-objdump",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-objdump",
         ),
         tool_path(
             name = "strip",
-            path = "wrappers/aarch64-rpi3-linux-gnu-strip",
+            path = ctx.attr.toolchain_ref.label.workspace_root + "/bin/aarch64-rpi3-linux-gnu-strip",
         ),
     ]
 
@@ -70,8 +70,8 @@ def _impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
-                            # "--sysroot=" + ctx.attr.toolchain_ref.label.workspace_root,
+                            # "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
+                            "--sysroot=" + ctx.attr.sysroot_ref.label.workspace_root,
                             "-no-canonical-prefixes",
                             "-fno-canonical-system-headers",
                             "-Wno-builtin-macro-redefined",
@@ -94,7 +94,8 @@ def _impl(ctx):
                 flag_groups = ([
                     flag_group(
                         flags = [
-                            "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
+                            # "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
+                            "--sysroot=" + ctx.attr.sysroot_ref.label.workspace_root,
                             "-lstdc++",
                         ],
                     ),
@@ -125,8 +126,8 @@ def _impl(ctx):
 cc_toolchain_config = rule(
     implementation = _impl,
     attrs = {
-        # "toolchain_ref": attr.label(),
-        # "sysroot_ref": attr.label(),
+        "toolchain_ref": attr.label(),
+        "sysroot_ref": attr.label(),
     },
     provides = [CcToolchainConfigInfo],
 )
