@@ -20,11 +20,7 @@ filegroup(
   ],
 )
 
-cc_toolchain_config(
-    name = "aarch64_toolchain_config",
-    toolchain_ref = "@aarch64-rpi3-linux-gnu//:toolchain",
-    sysroot_ref = "@aarch64-rpi3-linux-gnu-sysroot//:sysroot",
-)
+cc_toolchain_config(name = "aarch64_toolchain_config")
 
 cc_toolchain(
     name = "aarch64_toolchain",
