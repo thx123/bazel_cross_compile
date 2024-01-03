@@ -9,12 +9,12 @@ use_repo(non_module_deps, "aarch64-rpi3-linux-gnu-sysroot")
 use_repo(non_module_deps, "arm-cortex_a8-linux-gnueabihf")
 use_repo(non_module_deps, "arm-cortex_a8-linux-gnueabihf-sysroot")
 register_toolchains(
-    # "//:aarch64_linux_toolchain",  # for aarch64-rpi3-linux-gnu
+    "//:aarch64_linux_toolchain",  # for aarch64-rpi3-linux-gnu
     "//bazel/toolchain/arm-cortex_a8-linux-gnueabihf:armv7_linux_toolchain",
 )
 
-use_repo(non_module_deps, "x86_64_aarch64_none_linux_gnu")  # for cross-compiling C/C++ for AARCH64 (ARM)
-register_toolchains("@//:x86_64_aarch64_none_linux_gnu_toolchain")
+# use_repo(non_module_deps, "x86_64_aarch64_none_linux_gnu")  # for cross-compiling C/C++ for AARCH64 (ARM)
+# register_toolchains("@//:x86_64_aarch64_none_linux_gnu_toolchain")
 
 use_repo(non_module_deps, "zeromq")  # cppzmq depends on this
 use_repo(non_module_deps, "cppzmq")  # this is a header only library
