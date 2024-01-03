@@ -4,10 +4,6 @@
 bazel_dep(name = "rules_foreign_cc", version = "0.10.1")
 
 non_module_deps = use_extension("deps.bzl", "non_module_dependencies")
-# use_repo(non_module_deps, "aarch64_rpi3_linux_gnu")
-# use_repo(non_module_deps, "aarch64_rpi3_linux_gnu_sysroot")
-# use_repo(non_module_deps, "arm_cortex_a8_linux_gnueabihf")
-# use_repo(non_module_deps, "arm_cortex_a8_linux_gnueabihf_sysroot")
 use_repo(non_module_deps, "aarch64-rpi3-linux-gnu")
 use_repo(non_module_deps, "aarch64-rpi3-linux-gnu-sysroot")
 use_repo(non_module_deps, "arm-cortex_a8-linux-gnueabihf")
@@ -16,6 +12,6 @@ use_repo(non_module_deps, "zeromq")  # cppzmq depends on this
 use_repo(non_module_deps, "cppzmq")  # this is a header only library
 
 register_toolchains(
-    "//bazel/toolchain/aarch64-rpi3-linux-gnu:aarch64_linux_toolchain",
+    "//:aarch64_linux_toolchain",
     "//bazel/toolchain/arm-cortex_a8-linux-gnueabihf:armv7_linux_toolchain",
 )

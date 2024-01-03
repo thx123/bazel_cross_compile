@@ -70,7 +70,6 @@ def _impl(ctx):
                 flag_groups = [
                     flag_group(
                         flags = [
-                            # "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
                             "--sysroot=" + ctx.attr.sysroot_ref.label.workspace_root,
                             "-no-canonical-prefixes",
                             "-fno-canonical-system-headers",
@@ -94,9 +93,9 @@ def _impl(ctx):
                 flag_groups = ([
                     flag_group(
                         flags = [
-                            # "--sysroot=external/_main~non_module_dependencies~aarch64-rpi3-linux-gnu-sysroot",
                             "--sysroot=" + ctx.attr.sysroot_ref.label.workspace_root,
                             "-lstdc++",
+                            "-lm",
                         ],
                     ),
                 ]),
