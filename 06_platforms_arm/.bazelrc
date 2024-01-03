@@ -21,7 +21,7 @@ build --subcommands
 
 # For additional debugging messages and reproducing build failures in sandbox environments
 # Context: https://blog.bazel.build/2016/03/18/sandbox-easier-debug.html
-build --sandbox_debug
+# build --sandbox_debug
 
 # Additional debug info for toolchain reolution (warning: verbose and hard-to-read)
 # Debugging tips (with cquery, etc):
