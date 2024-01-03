@@ -126,12 +126,8 @@ def _impl(ctx):
 cc_toolchain_config = rule(
     implementation = _impl,
     attrs = {
-        "toolchain_ref": attr.label(
-          allow_single_file = True,
-        ),
-        "sysroot_ref": attr.label(
-          allow_single_file = True,
-        ),
+        "toolchain_ref": attr.label(),
+        "sysroot_ref": attr.label(),
     },
     provides = [CcToolchainConfigInfo],
 )
