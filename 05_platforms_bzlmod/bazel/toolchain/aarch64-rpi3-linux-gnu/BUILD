@@ -20,7 +20,11 @@ filegroup(
   ],
 )
 
-cc_toolchain_config(name = "aarch64_toolchain_config")
+cc_toolchain_config(
+    name = "aarch64_toolchain_config",
+    toolchain_ref = ":empty",
+    sysroot_ref = ":empty",
+)
 
 cc_toolchain(
     name = "aarch64_toolchain",
