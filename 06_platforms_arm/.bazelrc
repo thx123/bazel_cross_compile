@@ -55,3 +55,4 @@ build:ptest1 :hello --platforms=//bazel/platforms:rpi
 build:ptest2 //examples_bazel/cpp:hello-world
 build:ptest3 //examples_bazel/cpp:hello-world --platforms=//bazel/platforms:rpi
 build:ptest4 //examples_bazel/cpp:hello-world --platforms=//cfg-bazel/platforms:kr260_a
+build:ptest5 //third_party:all --platforms=//cfg-bazel/platforms:kr260_a
