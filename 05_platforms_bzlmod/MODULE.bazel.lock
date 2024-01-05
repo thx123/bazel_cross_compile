@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 3,
-  "moduleFileHash": "e970b13b74addd252b3d402156c2068a8c24dd36eb768a70af881d354a5623a0",
+  "moduleFileHash": "91c362633d255ed8699ac4c444107482c305fb3456b25d6d52888dbadf5f87e0",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -23,7 +23,7 @@
       "repoName": "",
       "executionPlatformsToRegister": [],
       "toolchainsToRegister": [
-        "//bazel/toolchain/aarch64-rpi3-linux-gnu:aarch64_linux_toolchain",
+        "//:aarch64_linux_toolchain",
         "//bazel/toolchain/arm-cortex_a8-linux-gnueabihf:armv7_linux_toolchain"
       ],
       "extensionUsages": [
